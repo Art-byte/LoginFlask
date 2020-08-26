@@ -1,0 +1,51 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+
+<script src="functions.js">
+</script>
+
+<div class="alert alert-success">
+    <strong>Bienvenido.</strong>Registrate - Ingresa al sistema
+</div>
+
+<div class="login-page">
+    <div class="form">
+        <form class="register-form" action="/registrar" method="POST">
+            <input type="email" name="nmEmailRegistro" required placeholder="Email">
+            <input type="password" name="nmPasswordRegistro" required placeholder="Password">
+            <input type="text" name="nmNombreRegistro" required placeholder="Nombre">
+            <button type="submit">Registrar</button>
+
+            <p class="message">¿Ya estás registrado ? <a href="#">Ingresa</a></p>
+        </form>
+
+
+        <form class="login-form" action="/ingresar" method="POST">
+            <input type="email" name="nmEmailLogin" required placeholder="Email">
+            <input type="password" name="nmPasswordLogin" required placeholder="Password">
+            <button type="submit">Ingresar</button>
+
+            <p class="message">¿Aún no estas registrado? <a href="#">Registrate</a></p>
+        </form>
+
+
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages%}
+                {% for category, message in messages %}
+                    <div class="alert {{category}}" id= "idMensajeError">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
